@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #cont {
+        width: 100vw;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -8px;
+        border: 1px solid black;
+        background-color: black;
+      }
+
+      .navbar{
+        padding: 10px;
+        margin: 10px;
+        margin-right: 50px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        background-color: black;
+      }
+      .navbar:hover{
+        text-decoration: underline;
+        color:greenyellow;
+
+      }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <button class="navbar" onclick="home()">Home</button>
+        <button class="navbar" onclick="login()">Login</button>
+        <button class="navbar" onclick="signup()">Sign Up</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function home() {
+        window.location.href = "home.html";
+    }
+    function login() {
+        window.location.href = "login.html";
+    }
+    function signup() {
+        window.location.href = "signup.html";
+    }
+</script>

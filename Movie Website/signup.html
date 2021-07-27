@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            background-color:#9433fc;
+        }
+      #cont {
+        width: 100vw;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -8px;
+        border: 1px solid black;
+        background-color: black;
+      }
+
+      .navbar{
+        padding: 10px;
+        margin: 10px;
+        margin-right: 50px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        background-color: black;
+      }
+      .navbar:hover{
+        text-decoration: underline;
+        color:greenyellow;
+      }
+      form{
+          width:300px;
+          height:500px;
+          margin: 5% auto;
+          font-size:20px;
+          border: 1px solid black;
+          text-align: center;
+          background-color:#eaeaed;
+          border-radius:20px;
+          border-color:#9433fc ;
+      }
+      input {
+          width: 200px;
+          height:30px;
+          margin-top: 20px;
+          border-radius: 10px;
+          font-size:16px;
+          letter-spacing:1px;
+          padding-left: 10px;
+          border-color: #000000;
+      }
+      #signup{
+          width: 150px;
+          border-radius:15px;
+          background-color:#9433fc;
+          padding:10px;
+          color: white;
+            border: none;
+            cursor: pointer;
+             font-size: 15px;
+      }
+      #signup:hover{
+        background-color:#9433fc;
+         opacity:0.7;
+      }
+      #tc{
+        width:10px;
+      }
+      p{
+          width: 300px;
+          font-size:11.5px;
+          color:#6a6a6c;
+      }
+      span{
+          font-size:12px;
+          color:#9332FE;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="cont">
+      <button class="navbar" onclick="home()">Home</button>
+      <button class="navbar" onclick="login()">Login</button>
+      <button class="navbar" >Sign Up</button>
+    </div>
+
+    <form id="form">
+        <h1>Sign Up</h1>
+        <input type="text" id="name" name="name" placeholder="Name" />
+        <input type="number" id="contact" name="contact" placeholder="Contact" />
+        <input type="email" id="email" name="email" placeholder="E-mail" />
+        <input type="password" id="password" name="password" placeholder="Password" />
+        <p><input type="checkbox" id="tc">I read and agree to <span>Terms & Conditions</span></p>
+        <button onclick="signUp(event)" id="signup" >Sign Up</button>
+       
+        <p >Already have an account? <span>Sign In</span> </p>
+    </form>
+  </body>
+</html>
+
+<script>
+  function home() {
+    alert("Login your account")
+    window.location.href = "login.html";
+    
+  }
+  function login() {
+    window.location.href = "login.html";
+  }
+
+  
+  
+  function signUp(e) {
+      e.preventDefault()
+      
+      
+      let form = document.getElementById("form");
+      
+       let name = form.name.value;
+       let contact = form.contact.value;
+       let email = form.email.value;
+       let password = form.password.value;
+
+       if(name==""&& contact==""&& email == "" && password == ""){
+            alert("Please enter valid credentials")
+        }else{
+
+
+            let object = {
+            name,
+            contact,
+            email,
+            password
+        }
+    
+        let arr = localStorage.getItem('user')
+    
+        if (arr == null) {
+            arr = []
+        } else {
+            arr = JSON.parse(arr)
+        }
+        arr.push(object);
+    
+        localStorage.setItem('user', JSON.stringify(arr))
+        form.reset()
+       }
+
+ }
+       
+
+</script>

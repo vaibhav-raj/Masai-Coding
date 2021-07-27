@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color:rgb(219, 188, 148) ;
+      }
+      #cont {
+        width: 100vw;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -8px;
+        border: 1px solid black;
+        background-color: black;
+      }
+
+      .navbar {
+        padding: 10px;
+        margin: 10px;
+        margin-right: 50px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        background-color: black;
+      }
+
+      .navbar:hover {
+        text-decoration: underline;
+        color: greenyellow;
+      }
+      .bannerDiv {
+        width: 90%;
+        margin: 20px auto;
+        height: 400px;
+      }
+      .imgDiv {
+        width: 100%;
+        height: 100%;
+      }
+      .movieDivCss {
+        width: 90%;
+        margin: auto;
+        display: grid;
+        gap: 3% 5%;
+        grid-template-columns: 30% 30% 30%;
+        grid-template-rows: 500px 500px 500px;
+        /* border:1px solid black; */
+      }
+      .movieCardCss {
+        display: flex;
+        flex-direction: column;
+        background: rgb(236, 211, 178);
+        border-radius: 5%;
+        box-shadow: rgba(173, 64, 64, 0.09) 0px 2px 1px,
+          rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+          rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+          transition:   1s ;
+      }
+      .movieCardCss:hover {
+          transform: scale(1.05)
+      }
+
+      .posterDivCss {
+        height: 80%;
+      }
+
+      .posterDivCss > img {
+        width: 100%;
+        height: 400px;
+        border-radius: 5% 5% 0 0;
+      }
+
+      .textDivCss {
+        margin: auto;
+        font-size: 20px;
+      }
+      .p1Css {
+        /* color: black; */
+        line-height: 0.4em;
+        text-align: center;
+      }
+      .p1Css:hover {
+        transform: scale(1.05);
+      }
+      .sortDivCss {
+        width: 100vw;
+        height: 50px;
+        background-color: rgb(6, 0, 12);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .sortDivCss>button {
+        /* background: rgb(236, 211, 178); */
+        background-color:black;
+        color: white;
+        width: 150px;
+        height: 30px;
+        margin: 10px 10px;
+        font-size: 18px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+      }
+      .sortDivCss>button:active{
+         color:yellow;
+        text-decoration: underline;
+        font-size:19px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="cont">
+      <button class="navbar" onclick="home()">Home</button>
+      <button class="navbar" onclick="login()">Login</button>
+      <button class="navbar" onclick="signup()">Sign Up</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  function login() {
+    window.location.href = "login.html";
+  }
+  function signup() {
+    window.location.href = "signup.html";
+  }
+
+  let parent = document.querySelector("body");
+
+  let bannerDiv = document.createElement("div");
+  bannerDiv.setAttribute("class", "bannerDiv");
+
+  parent.insertBefore(bannerDiv, parent.lastElementChild);
+
+  let slideArray = [
+    "https://www.pixel4k.com/wp-content/uploads/2018/09/x-men-days-of-future-past-banner_1536361949.jpg",
+    "https://www.heyuguys.com/images/2011/11/Snow-White-and-the-Huntsman-Banner.jpg",
+    "http://3.bp.blogspot.com/_15lMdxXGHfs/SwuerTSEGZI/AAAAAAAAASE/XZmCbRdDAUI/s1600/twilight+new+moon+banner.jpg",
+    "https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2021/03/godzilla-vs-kong-new-poster-scaled.jpg",
+    "https://a-static.besthdwallpaper.com/mulan-sword-with-snowy-mountains-background-wallpaper-1920x1080-42030_48.jpg",
+  ];
+
+  let imgDiv = document.createElement("img");
+  imgDiv.setAttribute("class", "imgDiv");
+
+  imgDiv.src = slideArray[0];
+
+  bannerDiv.append(imgDiv);
+
+  let i = 0;
+
+  setInterval(function () {
+    if (i == slideArray.length) {
+      i = 0;
+    } 
+      imgDiv.src = slideArray[i];
+      i++;
+
+  }, 2000);
+
+  const object = [
+    {
+      name: "Midway",
+      releaseDate: "2020",
+      poster:
+        "https://resizing.flixster.com/BuUaTkNqYYRsQB8wRhC9JtyCNAc=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzkxYmU1Mjk4LTUwZDMtNGRiNi04NjMxLTU3YzI0ZDQ3N2Q2ZC53ZWJw",
+      rating: "8.2",
+    },
+    {
+      name: "Logan",
+      releaseDate: "2017",
+      poster:
+        "https://lumiere-a.akamaihd.net/v1/images/logan_584x800_9a5af33a.jpeg?region=0%2C0%2C584%2C800",
+      rating: "9.9",
+    },
+    {
+      name: "Spider- Man: Homecoming",
+      releaseDate: "2017",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BOGQ5YTM3YzctOTVmMC00OGIyLWFkZTYtMWYwOWZhMjA2MWMwXkEyXkFqcGdeQXVyMjUyMTE5MA@@._V1_.jpg",
+      rating: "9.1",
+    },
+    {
+      name: "The Dark Knight(2008)",
+      releaseDate: "2008",
+      poster:
+        "https://images-na.ssl-images-amazon.com/images/I/91ebheNmoUL._RI_.jpg",
+      rating: "9.2",
+    },
+    {
+      name: "Seven Samurai",
+      releaseDate: "1956",
+      poster: "https://flxt.tmsimg.com/assets/p5588_p_v10_av.jpg",
+      rating: "10",
+    },
+    {
+      name: "Assassin",
+      releaseDate: "2018",
+      poster:
+        "https://assets.mubicdn.net/images/notebook/post_images/19893/images-w1400.jpg?1449196747",
+      rating: "10",
+    },
+    {
+      name: "Avengers: Infinity War",
+      releaseDate: "2019",
+      poster:
+        "https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/13/1522099265-avengers3.jpg?resize=480:*",
+      rating: "8.7",
+    },
+    {
+      name: "Matrix Revolution",
+      releaseDate: "2003",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BNzNlZTZjMDctZjYwNi00NzljLWIwN2QtZWZmYmJiYzQ0MTk2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+      rating: "8",
+    },
+    {
+      name: "Deadpool",
+      releaseDate: "2016",
+      poster:
+        "https://i.pinimg.com/originals/d3/e0/38/d3e038c795b25d7a78a3cfe9c13bd2d2.jpg",
+      rating: "8.7",
+    },
+    {
+      name: "The Sixth Sense",
+      releaseDate: "1999",
+      poster: "https://flxt.tmsimg.com/assets/p23611_p_v10_ag.jpg",
+      rating: "8.5",
+    },
+    {
+      name: "The Lord of the Rings",
+      releaseDate: "2001",
+      poster:
+        "https://images-na.ssl-images-amazon.com/images/I/A1yy50fuVnL._RI_.jpg",
+      rating: "9.4",
+    },
+    {
+      name: "Mission: Impossible - Fallout",
+      releaseDate: "2018",
+      poster:
+        "https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/Mission-Impossible-Fallout-Poster.jpg",
+      rating: "9.7",
+    },
+    {
+      name: "Parasite",
+      releaseDate: "2019",
+      poster: "https://i.ytimg.com/vi/w_0KJAzyUJc/maxresdefault.jpg",
+      rating: "9.5",
+    },
+    {
+      name: "Thor: Ragnarok",
+      releaseDate: "2017",
+      poster:
+        "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2017%2F09%2Fcr_krackle_thor_v2_sm-2000.jpg",
+      rating: "9.3",
+    },
+
+    {
+      name: "Doctor Strange",
+      releaseDate: "2016",
+      poster:
+        "https://cdn3.movieweb.com/i/movie/mRM5CaSXzuXEgxrKCij19PjrqWl7K1/1000:100/Doctor-Strange.jpg",
+      rating: "9.0",
+    },
+    {
+      name: "X - Men: Days of Future",
+      releaseDate: "2014",
+      poster: "https://flxt.tmsimg.com/assets/p7825626_p_v10_af.jpg",
+      rating: "8.9",
+    },
+
+    {
+      name: "NoteBook",
+      releaseDate: "2016",
+      poster:
+        "https://i.pinimg.com/originals/9f/76/d2/9f76d27077b39f3a1af5692bab09d67d.jpg",
+      rating: "8.8",
+    },
+
+    {
+      name: "A Beautiful Mind",
+      releaseDate: "2001",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BMzcwYWFkYzktZjAzNC00OGY1LWI4YTgtNzc5MzVjMDVmNjY0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+      rating: "8.2",
+    },
+    {
+      name: "Venom",
+      releaseDate: "2018",
+      poster:
+        "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/venom_onesheet_1400x2100_rated.png?itok=0tO6umMg",
+      rating: "8.4",
+    },
+
+    {
+      name: "Tenet",
+      releaseDate: "2021",
+      poster:
+        "https://m.media-amazon.com/images/M/MV5BYzg0NGM2NjAtNmIxOC00MDJmLTg5ZmYtYzM0MTE4NWE2NzlhXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg",
+      rating: "9.8",
+    },
+    {
+      name: "Ip Man",
+      releaseDate: "2008",
+      poster:
+        "http://www.nerdly.co.uk/wp-content/uploads/2017/01/ip-man-2-dvd.jpg",
+      rating: "8.6",
+    },
+  ];
+
+/**=======================
+ * !      to check localStorage 
+ * !      and set out data
+ *========================**/
+
+  if (localStorage.getItem("movieData") == null) {
+    localStorage.setItem("movieData", JSON.stringify(object));  
+  }
+
+  let movies = JSON.parse(localStorage.getItem("movieData"));
+
+
+  let movieDiv = document.createElement("div");
+  movieDiv.setAttribute("class", "movieDivCss");
+  parent.insertBefore(movieDiv, parent.lastElementChild);
+
+
+  /**=======================
+   * !      print movie data
+   * !       on browser
+   *========================**/
+
+  function printMovies(film) {
+
+    let result = "";
+
+    for (item in film) {
+
+        let el = film[item]; 
+
+      result += `
+                <div class="movieCardCss">
+                    <div class="posterDivCss">
+                        <img src="${el.poster}" alt="">
+                    </div>
+                    <div class="textDivCss">
+                        <p class="p1Css">Movie : ${el.name}</p>
+                        <p class="p1Css">Release Year: ${el.releaseDate}</p>
+                        <p class="p1Css">Rating : ${el.rating}</p>
+                    </div>
+                </div>`;
+    }
+
+    movieDiv.innerHTML=result;
+
+    // film.forEach(function (el){
+
+    // let movieCard = document.createElement("div");
+    // movieCard.setAttribute("class","movieCardCss")
+
+    // let posterDiv = document.createElement("div")
+    // posterDiv.setAttribute("class","posterDivCss")
+    // let textDiv = document.createElement("div")
+    // textDiv.setAttribute("class","textDivCss")
+
+    // let p1 = document.createElement("p")
+    // let p2 = document.createElement("p")
+    // let p3 = document.createElement("p")
+    // let moviePoster = document.createElement("img")
+
+    // p1.innerHTML = `Movie : ${el.name}`;
+    // p1.setAttribute("class","p1Css")
+    // p2.innerHTML =`Release Year: ${ el.releaseDate }`;
+    // p2.setAttribute("class", "p1Css")
+    // p3.innerHTML = `Rating : ${el.rating}`;
+    // p3.setAttribute("class", "p1Css")
+
+    // moviePoster.src = el.poster;
+
+    // textDiv.append(p1,p2,p3)
+    // posterDiv.append(moviePoster)
+    // movieCard.append(posterDiv, textDiv)
+
+    // movieDiv.append(movieCard);
+
+    // })
+  }
+
+  printMovies(movies);
+
+  /**=======================
+   * !      shorting Div 
+   * !  and Buttons
+   *========================**/
+
+  let sortDiv = document.createElement("div");
+  sortDiv.setAttribute("class", "sortDivCss");
+  parent.insertBefore(sortDiv, movieDiv);
+
+  let button1 = document.createElement("button");
+  button1.innerHTML = "Default Rating";
+  button1.addEventListener("click", byDefault);
+
+  let button2 = document.createElement("button");
+  button2.innerHTML = "Sort L-H";
+  button2.addEventListener("click", SortLow);
+
+  let button3 = document.createElement("button");
+  button3.innerHTML = "Sort H-L";
+  button3.addEventListener("click", SortHigh);
+
+  sortDiv.append(button1, button2, button3);
+
+/**=======================
+ * !      shorting
+ *========================**/  
+
+  function byDefault() {
+    let def = JSON.parse(localStorage.getItem("movieData"));
+
+    printMovies(def);
+  }
+
+  function SortLow() {
+    let low = JSON.parse(localStorage.getItem("movieData"));
+
+    low = low.sort(function (a, b) {
+      return a.rating - b.rating;
+    });
+
+    printMovies(low);
+
+     }
+
+  function SortHigh() {
+    let high = JSON.parse(localStorage.getItem("movieData"));
+
+    high = high.sort(function (a, b) {
+      return b.rating - a.rating;
+    });
+
+    printMovies(high);
+  }
+</script>
