@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>body{
+            background-color:rgb(172, 201, 165);
+
+    }
+        h2{
+            text-align: center;
+            font-size: 30px;
+                        color:#492f11;
+
+        }
+        #mycart_cont{
+            width:80vw;
+            display:grid;
+            grid-template-columns: 270px 270px 270px 270px;
+            grid-gap:30px;
+            margin:auto;
+            /* border:1px solid red; */
+        }
+            .itemCss{
+            width:100%;
+            /* border: 1px solid black; */
+            text-align: center;
+
+        }
+
+        #header{
+            width:80vw;
+            display:flex;
+            margin:auto;
+        }
+        #flat{
+            margin:auto;
+        }
+        input{
+            width:200px;
+            height:25px;
+            letter-spacing:1px;
+            margin-right: 10px;
+            border:2px solid black;
+        }
+        button{
+            padding:10px;
+            font-size:16px;
+            color:white;
+            background-color:#EA665C;
+            border-radius: 10px;    
+            margin-right: 10px;
+            border:none ;
+            cursor: pointer;
+
+            transition: background-color font-size 2s ;
+
+        }
+        button:hover{
+            background-color:#1a2c26;
+            font-size: 16.5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Your selected product! </h2>
+    <div id="header">
+        <div id="quantity_div">
+        </div>
+        <div id="flat">
+            <input type="text" id="promo" placeholder="Enter Promo Code">
+            <button onclick="applyPromo()" id="aplly-btn">Apply Promo</button>
+            <button onclick="checkedOut()" id="check-out">Check Out</button>
+        </div>
+    </div>
+    <hr>
+    <div id="mycart_cont"></div>
+</body>
+</html>
+<script>
+       let data = localStorage.getItem('myItem')
+        data = JSON.parse(data)
+
+        let parent = document.getElementById("mycart_cont")
+    
+       data.forEach(function(el){
+
+           let div = document.createElement("div")
+                div.setAttribute("class", "itemCss")
+
+              let p_name = document.createElement("h3")
+              p_name.innerHTML = `Product : ${el.name}`
+              let p_price = document.createElement("h3")
+              p_price.innerHTML = `Price : $${el.price}`
+              let img = document.createElement("img")
+              img.src = el.image
+              img.style.width = "270px"
+              img.style.height = "280px"
+
+            div.append(p_name, p_price, img)
+           parent.append(div);
+       });
+
+
+            let quantity_div = document.getElementById("quantity_div");
+            let totalProduct = document.createElement("h1")
+            totalProduct.innerHTML =`Total Quantity: ${data.length}`
+            
+            let totalPrice = document.createElement("h1")
+            let price=0;
+            data.forEach(function (el){
+               price += +el.price
+                // console.log(el);
+            })
+            totalPrice.innerHTML =`Total Price: $ ${price}`
+            quantity_div.append(totalProduct, totalPrice)
+
+
+
+          let promoCode = document.getElementById("promo");
+
+          let apply = document.getElementById("apply-btn")
+
+
+
+          let flat_price;
+
+          function applyPromo(){
+
+
+            if(promoCode.value==="masai30"){
+
+                flat_price = (price*70)/100
+                totalPrice.innerHTML = `Total Price: $ ${flat_price}`
+
+
+            }else{
+                alert("Please enter correct promo code!")
+                totalPrice.innerHTML = `Total Price: $ ${price}`
+
+            }    
+
+            promo.value=""
+          }
+
+        function  checkedOut(){
+            window.location.href = "checkout.html"
+        }
+
+
+</script>

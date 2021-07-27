@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+            <style>
+                body{
+                    background-color:rgb(172, 201, 165);
+                }
+                
+                h1,h3{
+                    text-align: center;
+                    padding-top:50px;
+                    font-size: 40px;
+                    color:#4b2312;
+                    margin-bottom:0;
+                }
+                span{
+                    font-size:26px;
+                    color:#8a2071;
+                }
+                form {
+                    width: 60%;
+                    display: flex;
+                    margin: 100px auto;
+                }
+            
+                #image-div {
+                    width: 60%;
+                    height: 350px;
+                }
+            
+                #input-area {
+                    width: 40%;
+                    height: 350px;
+                }
+            
+                input {
+                
+                    width: 70%;
+                    height: 25px;
+                    margin: 15px 12%;
+                    border-radius: 10px;
+                    border: 2px solid grey;
+                    padding: 1%;
+                    letter-spacing: 1px
+                }
+            
+                img {
+                    /* width:400px; */
+                    width: 100%;
+                    height: 352px;
+            
+                }
+            
+                #add_btn {
+                    width: 70%;
+                    margin: 15px 14%;
+
+                    /* margin: 15px 50px; */
+                    background-color: #EF8870;
+                    color: white;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 4%;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: fontSize background-color 2s ;
+
+                }
+                #add_btn:hover {
+                    background-color:#1a2c26;
+                    font-size:17px
+                }
+            
+                #show_product {
+                    font-size: 16px;
+                    margin: 12px 30%;
+                    border: none;
+                    text-decoration: underline;
+                    color: #6E7BF5;
+                    /* background-color: white; */
+                    background-color:rgb(172, 201, 165);
+
+                    cursor: pointer;
+                    transition: fontSize color 2s ;
+                }
+                #show_product:hover{
+                    font-size:16.5px;
+                    color:#1a2c2c;
+                }
+
+            </style>
+
+
+</head>
+
+<body>
+    <h1>You're welcome <br> <span>Thanks for choosing us... Happy Shopping!</span> </h1>
+    <form id="form">
+        <div id="image-div">
+            <img src="https://miro.medium.com/max/1111/1*xVXgcQSC4qDnxBgR4Ehg1Q.jpeg" alt="">
+        </div>
+        <div id="input-area">
+            <input type="text" id="product" placeholder="Product Name"><br>
+            <input type="Number" id="price" placeholder="Enter Price"> <br>
+            <input type="url" id="image" placeholder="http://example.com"> <br>
+            <button id="add_btn">Add Product</button>
+            <!-- <a href="./show_product.html" target="_blank" >Show Product</a> -->
+            <button id="show_product">Show Product</button>
+        </div>
+    </form>
+</body>
+
+</html>
+<script>
+
+/**=======================
+ * !      Add Product
+ *========================**/    
+    let btn = document.getElementById("add_btn");
+    btn.addEventListener("click", addProduct);
+
+    
+    function addProduct(event) {
+        
+        event.preventDefault();
+        let name = document.getElementById("product").value
+        let price = document.getElementById("price").value
+        let image = document.getElementById("image").value
+        
+        if (name == "" && price == "" && image == "") {
+            alert("Please enter valid credentials")
+        }else{
+
+                let productObj = {
+                name,
+                price,
+                image
+            }
+
+            let arr;
+
+            arr = localStorage.getItem('productData');
+
+            if (arr == null) {
+                arr = [];
+            }
+            else {
+                arr = JSON.parse(arr)
+            }
+
+            arr.push(productObj)
+
+            localStorage.setItem('productData', JSON.stringify(arr))
+
+            form.reset()
+        }
+
+    }
+
+        let show_btn = document.getElementById("show_product");
+        
+        show_btn.addEventListener("click", showProduct);
+     
+
+     function showProduct(event) {
+
+            event.preventDefault()
+
+
+                window.location.href = "show_product.html"
+    
+    
+     }
+
+</script>

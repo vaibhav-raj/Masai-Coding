@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        background-color:rgb(172, 201, 165);
+
+
+        }
+        #header{
+
+            height:100px;
+            position: relative;
+
+        }
+        h1{
+            text-align: center;
+            background-color:black;
+            color: white;
+            padding:25px 0;
+            margin-top: 0;
+            letter-spacing:2px
+        }
+
+        #mycart{
+        position:absolute;
+        width:50px;
+        height: 50px;
+        font-size:20px;
+        /* color:wheat; */
+        background-color:white;
+        border: none;
+        border-radius:50%;
+        color: white;
+        padding: 10px;
+        bottom:20px;
+        right:50px;
+        cursor: pointer;
+
+        }
+        .cart-btn{
+        display:block;
+        margin: 10px auto;
+        width:150px;
+        height:35px;
+        font-size:16px;
+        background-color:#F7CA00;
+        border:1px solid black;
+        border-radius: 10px;
+        top:10%;
+        cursor: pointer;
+        transition: background-color color 2s;
+    
+        }
+        .cart-btn:hover{
+            background-color:#1a2c26;
+            color:white;
+        }
+        #cont{
+            width:80vw;
+            display:grid;
+            grid-template-columns: 270px 270px 270px 270px;
+            grid-gap:25px;
+            margin:auto;
+            /* border:1px solid red; */
+        }
+        .itemCss{
+            width:100%;
+            /* border: 1px solid black; */
+            margin:auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Shopping Cart</h1>
+        <img id="mycart" src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="">
+        <!-- <img src="<button id="mycart">My Cart</button>" alt=""> -->
+        <!-- <button id="mycart">My Cart</button> -->
+    </div>
+    <div id="cont"></div>
+
+</body>
+</html>
+<script>
+    /**=======================
+     * !      Show product
+     *========================**/
+
+
+            let data = localStorage.getItem('productData')
+            data = JSON.parse(data)
+            
+            let parent = document.getElementById("cont")
+
+            
+            data.forEach(function (el) {
+
+                let div = document.createElement("div")
+                div.setAttribute("class","itemCss")
+
+                let p_name = document.createElement("h2")
+                p_name.innerHTML = `Product : ${el.name}`
+                let p_price = document.createElement("h2")
+                p_price.innerHTML = `Price : $ ${el.price}`
+                let img = document.createElement("img")
+                img.src = el.image
+                img.style.width = "270px"
+                img.style.height = "280px"
+
+                /**======================
+                 *    Add Cart Button
+                 *========================**/
+
+                let add_cart = document.createElement("button")
+                add_cart.innerHTML = "Add to cart"
+                add_cart.setAttribute("class","cart-btn")
+
+
+                add_cart.onclick = function () {
+                    my_cart(el)
+                }
+
+                div.append(p_name, p_price, img, add_cart)
+                parent.append(div);
+
+            });
+            /**=======================
+             * myCart function
+             *========================**/
+
+                function my_cart(el) {
+
+                    let arr = localStorage.getItem('myItem');
+                    console.log(arr)
+
+                    if (arr == null) {
+                        arr = []
+                        arr.push(el)
+                        localStorage.setItem('myItem', JSON.stringify(arr));
+                    }
+
+                    else {
+                        arr = JSON.parse(arr);
+                        let exist = false;
+                        arr.forEach(function (elem) {
+                            console.log(elem);
+
+                            if (elem.image == el.image) {
+                                exist = true;
+                            }
+                        })
+                        if (exist == true) {
+                            alert('Already Exist in Your Cart');
+                        }
+                        else {
+                            arr.push(el)
+                            localStorage.setItem('myItem', JSON.stringify(arr));
+                        }
+
+                        
+                    }
+
+                }
+
+
+                let Cart_btn = document.getElementById("mycart")
+                Cart_btn.addEventListener("click", myCart)
+                function myCart() {
+                    window.location.href = "mycart.html"
+                }
+            
+        
+</script>
