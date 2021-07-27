@@ -1,0 +1,29 @@
+.navbar {
+  width: 100%;
+  background-color: rgb(178, 176, 186);
+}
+.form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.navbar input,
+textarea {
+  outline: none;
+  border: 1px solid black;
+  margin: 8px;
+  padding: 10px;
+  font-family: roboto;
+  font-size: 16px;
+}
+
+.navbar button {
+  width: 50%;
+  margin: 0 auto;
+  padding: 5px 10px;
+  background-color: lightgrey;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
