@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Newsreader&display=swap');
+    
+        #nav {
+            width: 100vw;
+            display: flex;
+            /* justify-content: flex-center; */
+            margin-top: -10px;
+            border: 1px solid black;
+            background-color: black;
+            position: sticky;
+            top: 0;
+            padding: 5px 0;
+        }
+    
+        #navdiv {
+            width: 50%;
+            margin: auto;
+        }
+    
+        a {
+            list-style: none;
+            text-decoration: none;
+        }
+    
+        .navbar {
+            padding: 10px;
+            /* margin: 10px; */
+            margin: auto;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    
+        .navbar:hover {
+            text-decoration: 3px red underline;
+        }
+    
+    
+        #main {
+            width: 100vw;
+            font-family: serif;
+        }
+    
+        h1 {
+            text-align: center;
+            font-family: cursive;
+        }
+    
+        #cont {
+            width: 80%;
+            margin: auto;
+            font-family: 'Newsreader', serif;
+    
+        }
+    
+        #item {
+            border-radius: 10px;
+            border: 1px solid black;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 10px;
+            background-color: antiquewhite;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            line-height: 1.4em;
+        }
+    
+        input {
+            margin-left: 13%;
+            height: 25px;
+            padding-left: 5px;
+        }
+    
+        button {
+            height: 23px;
+            /* padding:0 7px; */
+            background-color: red;
+            color: white;
+            border: none;
+        }
+    
+        button:hover {
+            opacity: 0.8
+        }
+    
+        ::selection {
+            color: white;
+            background: black;
+        }
+    
+        #buttons {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <a href="news.html" target="_blank" class="navbar">Home</a>
+
+        <div id="navdiv">
+            <a href="sports.html" target="_blank" class="navbar">Sports
+            </a>
+            <a href="entertainment.html" target="_blank" class="navbar">Entertainment
+            </a>
+            <a href="technology.html" target="_blank" class="navbar">Technology
+            </a>
+            <input type="search" placeholder="Search..." id="search">
+            <button onclick="NewsSearch()"><strong>search</strong> </button>
+
+        </div>
+    </div>
+    <div id="main">
+        <h1><span style="color:red">Top 10</span> Sports NEWS Headings</h1>
+        <div id="cont">
+
+        </div>
+        <div id="buttons">
+            
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+ var data;
+    async function main() {
+        data = await getNews();
+
+        showNews(data);
+
+        showButton(1); //
+    }
+    main();
+
+    function NewsSearch() {
+        main();
+    }
+
+    async function getNews() {
+        let search = document.getElementById("search").value;
+
+        if (search.length > 0) {
+            // console.log(search);
+
+            let response = await fetch(
+                `https://newsapi.org/v2/everything?q=${search}&from=2021-06-25&sortBy=popularity&apiKey=ff611d5d6f1e42ecb9ab22e5f1e0cd81`
+            );
+
+            let data = await response.json();
+            console.log(data.articles);
+            return data.articles;
+        }
+
+        let response = await fetch(
+            "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=ff611d5d6f1e42ecb9ab22e5f1e0cd81"
+        );
+
+        let data = await response.json();
+        //   console.log(data.articles);
+        // showNews(data.articles);
+        return data.articles;
+    }
+
+    // getNews();
+    function showButton(index) {
+        console.log(index);
+
+        let button_div = document.getElementById("buttons");
+
+        button_div.innerHTML = null;
+
+        let original_id = index;
+
+        if (index <= 2) {
+            index = 2;
+        }
+
+        //1to 10
+        //3-12
+
+        for (let i = index - 1; i <= index + 1; i++) {
+            let btn = document.createElement("button");
+
+            btn.innerText = i;
+
+            btn.setAttribute("id", `${i}`);
+
+            btn.onclick = showNews;
+
+            button_div.appendChild(btn);
+        }
+
+        let btn = document.getElementById(original_id);
+        // btn.style.backgroundColor = "green";
+    }
+
+    let page = document.getElementById("cont");
+
+    function showNews() {
+        document.getElementById("cont").innerHTML = "";
+        document.getElementById("search").value = "";
+
+        let id = +this.id;
+        console.log("id:", id);
+
+        let num = id - 1;
+
+        let news;
+        if (id) news = data.slice(num * 5, num * 5 + 5);
+        else news = data.slice(0, 5);
+
+        // if (data.length == 0) {
+        //   let msg = document.createElement("h2");
+        //   msg.innerHTML = "Searched content is not available!";
+        //   msg.style.textAlign = "center";
+        //   msg.style.color = "red";
+        //   page.append(msg);
+        // } else {
+
+        news.forEach(function (el) {
+            let div = document.createElement("div");
+            let title = document.createElement("p");
+            title.innerHTML = `<strong> ${el.title} </strong>`;
+
+            let desc = document.createElement("p");
+            desc.innerHTML = `${el.description}`;
+
+            let date = document.createElement("p");
+            date.innerHTML = ` <strong>Published - ${el.publishedAt}</strong>`;
+            date.style.color = "red";
+
+            div.append(date, title, desc);
+            console.log(div);
+            div.setAttribute("id", "item");
+            page.append(div);
+        });
+
+        showButton(id);
+    }
+
+// async function NewsSearch() {
+//   let search = document.getElementById("search").value;
+
+//   // console.log(search);
+
+//   let response = await fetch(
+//     `https://newsapi.org/v2/everything?q=${search}&from=2021-06-25&sortBy=popularity&apiKey=ff611d5d6f1e42ecb9ab22e5f1e0cd81`
+//   );
+
+//   let data = await response.json();
+//   console.log(data.articles);
+//   return data.articles;
+//   // showNews(data.articles);
+// }
+
+</script>
