@@ -1,0 +1,31 @@
+.card {
+  margin: 10px auto;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px 0 30px 0;
+  background-color: rgb(172, 201, 165);
+}
+
+.card button {
+  margin: 5px;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.card button:hover {
+  transform: scale(1.1);
+}
+
+.edit {
+  background-color: green;
+}
+
+.toggle {
+  background-color: orange;
+}
+.dlt {
+  background-color: red;
+}

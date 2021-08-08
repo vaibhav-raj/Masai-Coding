@@ -1,0 +1,30 @@
+.todoInput {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.todoInput input {
+  border-right: none;
+  border-radius: 0;
+  width: 70%;
+  padding: 8px;
+  font-size: 18px;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+}
+
+.addBtn {
+  width: 26%;
+  background: #d9d9d9;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 10px 10px 0;
+  font-weight: bold;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}

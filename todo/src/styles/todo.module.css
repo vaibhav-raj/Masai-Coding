@@ -1,0 +1,43 @@
+.card {
+  padding-top: 30px;
+  margin: auto;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(172, 201, 165);
+}
+.count {
+  width: 500px;
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.count h3 {
+  color: brown;
+}
+.todo {
+  margin: 10px auto;
+  width: 400px;
+  text-align: left;
+  border-radius: 10px;
+  background-color: #f1ebeb;
+}
+.todo:hover {
+  background-color: #eee5e5;
+}
+
+.todo a {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  line-height: 1.5em;
+  margin: 20px 0 10px 20px;
+  padding: 0 5px;
+}
+.todo a:hover {
+  cursor: pointer;
+  border-bottom: 2px solid black;
+  /* color: green; */
+}

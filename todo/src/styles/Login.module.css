@@ -1,0 +1,32 @@
+.form {
+  width: 400px;
+  margin: 20px auto;
+  border: 1px solid black;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  background-color: rgb(172, 201, 165);
+}
+
+.form input {
+  border-radius: 10px;
+  width: 70%;
+  padding: 8px;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.addBtn {
+  width: 26%;
+  background: #d9d9d9;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 5px 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
